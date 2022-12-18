@@ -26,6 +26,8 @@
   "homepage": "https://github.com/nik-kita/class-validator-customs#readme",
   "keywords": [],
   "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {

@@ -2,11 +2,11 @@
   "version": "0.2.0",
   "configurations": [
    {
-     "name": "start:dev",
+     "name": "start",
      "request": "launch",
      "runtimeArgs": [
        "run-script",
-       "start:dev"
+       "start"
      ],
      "runtimeExecutable": "npm",
      "skipFiles": [
