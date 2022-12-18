@@ -1,5 +1,5 @@
 import { ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
-import { wrapInQuotes } from '../../utils';
+import { wrapInQuotes } from '@app/utils';
 import { CurrValidationArguments } from './vassal-sibling.decorator';
 
 /* eslint-disable no-use-before-define */

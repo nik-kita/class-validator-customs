@@ -1,1 +1,1 @@
-export { wrapInQuotes } from './wrap-in-quotes.util';
+export * from './wrap-in-quotes.util';
