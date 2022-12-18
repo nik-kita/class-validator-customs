@@ -4,7 +4,7 @@ import { ExampleDto } from './decorators/vassal-sibling/example.dto';
 
 async function main() {
   const dto = plainToInstance(ExampleDto, {
-    hello: 'you',
+    hello: 'world',
     to: '***',
   });
 

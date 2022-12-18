@@ -28,35 +28,53 @@ export const VassalSibling = <
   });
 
 type CurrValidationArguments = ValidationArguments & {
-  constraints: Omit<Parameters<typeof VassalSibling>[1], 'masterSibling'> & {
+  constraints: [Omit<Parameters<typeof VassalSibling>[1], 'masterSibling'> & {
     masterSibling: string,
-  },
+  }],
 };
 
 @ValidatorConstraint()
 class VassalSiblingConstraint implements ValidatorConstraintInterface {
+  private message = '';
+
   validate(value: any, {
-    constraints: [constraint], object,
+    constraints: [constraint], object, property,
   }: CurrValidationArguments): boolean | Promise<boolean> {
     const { masterSibling, masterVassalCombo } = constraint;
     const masterValue = (object as any)[masterSibling];
+    const masterKeys = Object.keys(masterVassalCombo);
+    const isGoodMaster = masterKeys.includes(masterValue);
 
-    return masterVassalCombo[masterValue]
+    if (!isGoodMaster) {
+      this.message = `\
+Unexpected value for property '${masterSibling}'! \
+Actual = '${masterValue}'. \
+Expected = one from [${masterKeys.map(wrapInQuotes).join()}].
+That's why validation of '${property}' property \
+is impossible...\
+`;
+
+      return false;
+    }
+
+    const result = masterVassalCombo[masterValue]
       .includes(value);
-  }
 
-  defaultMessage?({
-    value, constraints: [constraint], property, object,
-  }: CurrValidationArguments): string {
-    // return 'ooops';
-    const { masterVassalCombo, masterSibling } = constraint;
-    const masterValue = (object as any)[masterSibling];
+    if (result) {
+      return result;
+    }
 
-    return `\
+    this.message = `\
 When property '${masterSibling}'='${masterValue}', \
 '${property}' should be one from \
 [${masterVassalCombo[masterValue].map(wrapInQuotes).join()}]\
 `;
+
+    return false;
+  }
+
+  defaultMessage(): string {
+    return this.message;
   }
 }
 
