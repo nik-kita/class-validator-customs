@@ -36,4 +36,27 @@ describe(`@${VassalSibling.name}`, () => {
 
     expect(errors.length).toBe(0);
   });
+
+  it.each([
+    { country: '-USA', greeting: ['hello'] },
+    { country: '-USA', greeting: ['hello', 'hi'] },
+    { country: '-USA', greeting: ['hello', 'yo', 'hi'] },
+    { country: '-USA', greeting: ['hi', 'ku'] },
+    { country: '-Ukraine', greeting: ['vechir dobrii'] },
+    { country: '-Ukraine', greeting: ['ku'] },
+  ])('Should fail validation because of masterSibling value', (data) => {
+    const errors = validateSync(plainToInstance(Test1, data));
+
+    expect(errors.length).toBe(1);
+  });
+
+  it.each([
+    { country: '-USA', greeting: [] },
+    { country: '-Ukraine', greeting: [] },
+    { country: '-Ukraine', greeting: [] },
+  ])('Should success validation even with incorrect masterSibling value because vassalSibling is empty array', (data) => {
+    const errors = validateSync(plainToInstance(Test1, data));
+
+    expect(errors.length).toBe(0);
+  });
 });
