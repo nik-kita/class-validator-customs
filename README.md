@@ -71,11 +71,9 @@ npm run test
 ```
 
 # TODO
-&#9745; <del>`@VassalSibling` decorator works both for single property mode or for arrays (standard `{ foreach: true }` option). But typescript currently supports only single variant.
+&#9745; <del>`@VassalSibling` decorator works both for single property mode or for arrays (standard `{ foreach: true }` option). But typescript currently supports only single variant.</del>
 
-[ ] create npm package
-
-&#9744;
+&#9744; create npm package
 
 &#9744;
 
