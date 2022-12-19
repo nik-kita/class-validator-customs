@@ -61,6 +61,9 @@
 
     > However! When standard class-validator option `{ each: true }` is used and `vassalSibling`'s value is empty array (`[]`) - even with incorrect value for `masterSibling` any errors are not happen, because validation don't start. That means, that you should validate your `masterSibling` property in any way.
 
+  * Why so complicated type declaration quote: `(typeof ALL_QUOTES)[number][];`???
+    > This is example of how it may be typed. May be you should know better solutions (please make issue). But idea is in that you define your values as js constant and then make type from it... it is very cool typescript feature! But after such manipulation your type will have `readonly` property. So in pseudocode, this line means:
+    `take any element form unchangeable array and make array from them (even empty)`
 # Tests
 I try to support project with tests. May be in future it will be separate npm package... But for now feel free to use code from `src/decorators/_interested_you_decorator_/*` in your project (copy, change, modificate, upgrade, rename... Good Luck!)
 ```
