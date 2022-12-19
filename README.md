@@ -70,3 +70,5 @@ I try to support project with tests. May be in future it will be separate npm pa
 npm run test
 ```
 
+# TODO
+* `@VassalSibling` decorator works both for single property mode or for arrays (standard `{ foreach: true }` option). But typescript currently supports only single variant.
