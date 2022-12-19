@@ -74,4 +74,19 @@ describe(`@${VassalSibling.name} with { each: true } option`, () => {
 
     expect(errors.length).toBe(1);
   });
+
+  it.each([
+    { country: 'USA', greeting: ['P'] },
+    { country: 'USA', greeting: ['U', '_', ''] },
+    { country: 'USA', greeting: ['T', '_', '-'] },
+    { country: 'USA', greeting: ['I', '_', '+'] },
+    { country: 'USA', greeting: ['N', ''] },
+    { country: 'Ukraine', greeting: ['H', 'U', 'Y', 'L', 'O'] },
+    { country: 'Ukraine', greeting: ['la', 'la', 'la', 'la'] },
+    { country: 'Ukraine', greeting: ['!', '!', '!', 'vechir dobrii'] },
+  ])('Should fail validation because of alien vassalSibling\'s values', (data) => {
+    const errors = validateSync(plainToInstance(Test1, data));
+
+    expect(errors.length).toBe(1);
+  });
 });
