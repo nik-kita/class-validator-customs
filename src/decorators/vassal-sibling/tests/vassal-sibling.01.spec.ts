@@ -21,7 +21,7 @@ class Test1 {
   greeting!: (typeof siblingsVariantsForTest1)[number][]
 }
 
-describe(`@${VassalSibling.name}`, () => {
+describe(`@${VassalSibling.name} with { each: true } option`, () => {
   it.each([
     { country: 'USA', greeting: ['hello'] },
     { country: 'USA', greeting: ['hello', 'hi'] },
@@ -58,5 +58,20 @@ describe(`@${VassalSibling.name}`, () => {
     const errors = validateSync(plainToInstance(Test1, data));
 
     expect(errors.length).toBe(0);
+  });
+
+  it.each([
+    { country: 'USA', greeting: ['vechir dobrii'] },
+    { country: 'USA', greeting: ['hello', 'hi', 'vechir dobrii'] },
+    { country: 'USA', greeting: ['hello', 'yo', 'hi', 'vechir dobrii'] },
+    { country: 'USA', greeting: ['hi', 'ku', 'vechir dobrii'] },
+    { country: 'USA', greeting: ['vechir dobrii'] },
+    { country: 'Ukraine', greeting: ['hi', 'yo', 'vechir dobrii'] },
+    { country: 'Ukraine', greeting: ['vechir dobrii', 'hello'] },
+    { country: 'Ukraine', greeting: ['ku', 'yo'] },
+  ] as Test1[])('Should fail validation because of mismatching vassalSibling\'s values', (data) => {
+    const errors = validateSync(plainToInstance(Test1, data));
+
+    expect(errors.length).toBe(1);
   });
 });
