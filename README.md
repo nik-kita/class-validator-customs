@@ -1,8 +1,8 @@
 
 # About
 
-
-> TODO
+Library for custom validators, builded with power of [class-validator](https://github.com/typestack/class-validator).
+Focused both on special validation goals together with typescript support for all decorators.
 
 # Decorators
 * `@VassalSibling`

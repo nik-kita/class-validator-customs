@@ -1,6 +1,6 @@
-import { plainToInstance } from "class-transformer";
-import { validateSync } from "class-validator";
-import { VassalSibling } from "../vassal-sibling.decorator";
+import { plainToInstance } from 'class-transformer';
+import { validateSync } from 'class-validator';
+import { VassalSibling } from '../vassal-sibling.decorator';
 
 const ALL_QUOTES = [
   'I\'l be back',
@@ -11,13 +11,13 @@ const ALL_QUOTES = [
 class MovieQuoteDto {
   hero!: 'Terminator' | 'Volan De Mort' | 'Gollum';
 
-  @VassalSibling({ context: MovieQuoteDto }, {
+  @VassalSibling({ each: true, context: MovieQuoteDto }, {
     masterSibling: 'hero',
     allVariants: ALL_QUOTES,
     masterVassalCombo: {
-      Terminator: ['I\'l be back'],
       'Volan De Mort': ['Avada Kedavra!'],
       Gollum: ['...my precioussss...'],
+      Terminator: ['I\'l be back']
     },
   })
   quote!: (typeof ALL_QUOTES)[number];
