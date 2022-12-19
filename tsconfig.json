@@ -104,6 +104,7 @@
   },
   "include": [
     "src",
-    "env.d.ts"
+    "env.d.ts",
+    "__tests__"
   ]
 }
